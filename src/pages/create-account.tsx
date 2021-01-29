@@ -3,7 +3,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useForm } from 'react-hook-form';
 import { FormError } from '../components/form-error';
-import { Button } from '../components/button';
+import { AccountButton } from '../components/button';
 import { Link, useHistory } from 'react-router-dom';
 import { UserRole } from '../__generated__/globalTypes';
 import {
@@ -11,6 +11,7 @@ import {
   createAccountMutationVariables,
 } from '../__generated__/createAccountMutation';
 import { EMAIL_REGEX } from '../constants';
+import { AccountFiller } from '../components/account-filler';
 
 // 아래 mutation이름 (PotatoMutation)은 백엔드로 가는게 아니라 프론트에서 쓰여질 것임(Apollo)
 // Apollo는 이 변수들을 살펴보고 내가 작성한 변수들을 가지고 mutation을 만들음
@@ -79,18 +80,25 @@ export const CreateAccount = () => {
   // console.log(watch());
 
   return (
-    <div className="h-screen flex items-center flex-col bg-gray-800">
+    <div
+      style={{ height: '70vh' }}
+      className="flex max-w-screen-2xl m-auto h-full"
+    >
       <Helmet>
         <title>CreateAccount | Podcast</title>
       </Helmet>
+
+      <AccountFiller />
+
       <div className="w-full max-w-screen-sm flex flex-col px-5 items-center">
         <h4 className="w-full font-semibold text-left text-3xl mb-5 text-yellow-200">
           Join us
         </h4>
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="grid gap-3 mt-5 w-full mb-5"
+          className="grid gap-3 mt-5 w-full mb-5 text-white"
         >
+          <div className="text-left font-semibold">Email</div>
           <input
             ref={register({
               required: 'Email is required',
@@ -107,6 +115,7 @@ export const CreateAccount = () => {
           {errors.email?.message && (
             <FormError errorMessage={errors.email?.message} />
           )}
+          <div className="text-left font-semibold">Password</div>
           <input
             ref={register({ required: 'Password is required' })}
             required
@@ -118,6 +127,7 @@ export const CreateAccount = () => {
           {errors.password?.message && (
             <FormError errorMessage={errors.password?.message} />
           )}
+          <div className="text-left font-semibold">Role</div>
           <select
             name="role"
             ref={register({ required: true })}
@@ -129,7 +139,7 @@ export const CreateAccount = () => {
               </option>
             ))}
           </select>
-          <Button
+          <AccountButton
             canClick={formState.isValid}
             loading={loading}
             actionText="Create Account"
