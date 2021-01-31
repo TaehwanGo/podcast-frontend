@@ -70,67 +70,68 @@ export const Login = () => {
   };
 
   return (
-    <div
-      style={{ height: '70vh' }}
-      className="flex max-w-screen-2xl m-auto h-full"
-    >
+    <div style={{ height: '70vh' }} className="flex max-w-screen-xl m-auto">
       <Helmet>
         <title>Login | Podcast</title>
       </Helmet>
-
-      <AccountFiller />
-      <section className="text-center px-5 w-full max-w-screen-sm">
-        <h3 className="font-bold text-left text-3xl text-yellow-200 mt">
-          Log in
-        </h3>
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="grid gap-3 mt-10 text-white"
-        >
-          <div className="text-left font-semibold">Email</div>
-          <input
-            ref={register({
-              required: 'Email is required',
-              pattern: {
-                value: EMAIL_REGEX,
-                message: 'Please enter a valid email',
-              },
-            })}
-            className="input"
-            placeholder="Email"
-            type="email"
-            name="email"
-          />
-          {errors.email?.message && (
-            <FormError errorMessage={errors.email.message} />
-          )}
-          <div className="text-left font-semibold">Password</div>
-          <input
-            ref={register({ required: 'Password is required' })}
-            className="input"
-            placeholder="Password"
-            type="password"
-            name="password"
-          />
-          {errors.password?.message && (
-            <FormError errorMessage={errors.password.message} />
-          )}
-          <AccountButton
-            canClick={formState.isValid}
-            loading={loading}
-            actionText="Log in"
-          />
-          {loginMutationResult?.login.error && (
-            <FormError errorMessage={loginMutationResult.login.error} />
-          )}
-        </form>
-        <div className="text-white mt-4">
-          New to Podcast?{' '}
-          <Link to="/create-account" className="text-green-600 hover:underline">
-            Create an Account
-          </Link>
-        </div>
-      </section>
+      <div className="login-screen-grid">
+        <AccountFiller />
+        <section className="login-mobile-screen">
+          <h3 className="font-bold text-left text-3xl text-yellow-200 mt">
+            Log in
+          </h3>
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="grid gap-3 mt-10 text-white"
+          >
+            <div className="text-left font-semibold">Email</div>
+            <input
+              ref={register({
+                required: 'Email is required',
+                pattern: {
+                  value: EMAIL_REGEX,
+                  message: 'Please enter a valid email',
+                },
+              })}
+              className="input"
+              placeholder="Email"
+              type="email"
+              name="email"
+            />
+            {errors.email?.message && (
+              <FormError errorMessage={errors.email.message} />
+            )}
+            <div className="text-left font-semibold">Password</div>
+            <input
+              ref={register({ required: 'Password is required' })}
+              className="input"
+              placeholder="Password"
+              type="password"
+              name="password"
+            />
+            {errors.password?.message && (
+              <FormError errorMessage={errors.password.message} />
+            )}
+            <AccountButton
+              canClick={formState.isValid}
+              loading={loading}
+              actionText="Log in"
+            />
+            {loginMutationResult?.login.error && (
+              <FormError errorMessage={loginMutationResult.login.error} />
+            )}
+          </form>
+          <div className="text-white mt-4">
+            New to Podcast?{' '}
+            <Link
+              to="/create-account"
+              className="text-green-600 hover:underline"
+            >
+              Create an Account
+            </Link>
+          </div>
+        </section>
+      </div>
     </div>
   );
 };

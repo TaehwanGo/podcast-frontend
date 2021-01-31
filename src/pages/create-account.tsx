@@ -80,82 +80,80 @@ export const CreateAccount = () => {
   // console.log(watch());
 
   return (
-    <div
-      style={{ height: '70vh' }}
-      className="flex max-w-screen-2xl m-auto h-full"
-    >
+    <div style={{ height: '70vh' }} className="flex max-w-screen-xl m-auto">
       <Helmet>
         <title>CreateAccount | Podcast</title>
       </Helmet>
+      <div className="login-screen-grid">
+        <AccountFiller />
 
-      <AccountFiller />
-
-      <div className="w-full max-w-screen-sm flex flex-col px-5 items-center">
-        <h4 className="w-full font-semibold text-left text-3xl mb-5 text-yellow-200">
-          Join us
-        </h4>
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="grid gap-3 mt-5 w-full mb-5 text-white"
-        >
-          <div className="text-left font-semibold">Email</div>
-          <input
-            ref={register({
-              required: 'Email is required',
-              pattern: {
-                value: EMAIL_REGEX,
-                message: 'Please enter a valid email',
-              },
-            })}
-            required
-            name="email"
-            placeholder="Email"
-            className="input"
-          />
-          {errors.email?.message && (
-            <FormError errorMessage={errors.email?.message} />
-          )}
-          <div className="text-left font-semibold">Password</div>
-          <input
-            ref={register({ required: 'Password is required' })}
-            required
-            name="password"
-            type="password"
-            placeholder="Password"
-            className="input"
-          />
-          {errors.password?.message && (
-            <FormError errorMessage={errors.password?.message} />
-          )}
-          <div className="text-left font-semibold">Role</div>
-          <select
-            name="role"
-            ref={register({ required: true })}
-            className="input mb-1"
+        <section className="login-mobile-screen">
+          <h4 className="w-full font-semibold text-left text-3xl mb-5 text-yellow-200">
+            Join us
+          </h4>
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="grid gap-3 mt-5 w-full mb-5 text-white"
           >
-            {Object.keys(UserRole).map((role, index) => (
-              <option key={index} className="input">
-                {role}
-              </option>
-            ))}
-          </select>
-          <AccountButton
-            canClick={formState.isValid}
-            loading={loading}
-            actionText="Create Account"
-          />
-          {createAccountMutationResult?.createAccount.error && (
-            <FormError
-              errorMessage={createAccountMutationResult.createAccount.error}
+            <div className="text-left font-semibold">Email</div>
+            <input
+              ref={register({
+                required: 'Email is required',
+                pattern: {
+                  value: EMAIL_REGEX,
+                  message: 'Please enter a valid email',
+                },
+              })}
+              required
+              name="email"
+              placeholder="Email"
+              className="input"
             />
-          )}
-        </form>
-        <div className="text-white">
-          Already have an account?{' '}
-          <Link to="/" className="text-green-600 hover:underline">
-            Log in now
-          </Link>
-        </div>
+            {errors.email?.message && (
+              <FormError errorMessage={errors.email?.message} />
+            )}
+            <div className="text-left font-semibold">Password</div>
+            <input
+              ref={register({ required: 'Password is required' })}
+              required
+              name="password"
+              type="password"
+              placeholder="Password"
+              className="input"
+            />
+            {errors.password?.message && (
+              <FormError errorMessage={errors.password?.message} />
+            )}
+            <div className="text-left font-semibold">Role</div>
+            <select
+              name="role"
+              ref={register({ required: true })}
+              className="input mb-1"
+            >
+              {Object.keys(UserRole).map((role, index) => (
+                <option key={index} className="input">
+                  {role}
+                </option>
+              ))}
+            </select>
+            <AccountButton
+              canClick={formState.isValid}
+              loading={loading}
+              actionText="Create Account"
+            />
+            {createAccountMutationResult?.createAccount.error && (
+              <FormError
+                errorMessage={createAccountMutationResult.createAccount.error}
+              />
+            )}
+          </form>
+          <div className="text-white">
+            Already have an account?{' '}
+            <Link to="/" className="text-green-600 hover:underline">
+              Log in now
+            </Link>
+          </div>
+        </section>
       </div>
     </div>
   );

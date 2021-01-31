@@ -4,6 +4,7 @@ import { Header } from '../components/header';
 import { NotFound } from '../pages/404';
 import { useMe } from '../hooks/useMe';
 import { GetAllPodcsts } from '../pages/getAllPodcasts';
+import { EditProfile } from '../pages/user/edit-profile';
 
 export const LoggedInRouter = () => {
   const { data, loading, error } = useMe();
@@ -20,6 +21,9 @@ export const LoggedInRouter = () => {
     <Router>
       <Header />
       <Switch>
+        <Route path="/edit-profile">
+          <EditProfile />
+        </Route>
         <Route path="/" exact>
           <GetAllPodcsts />
         </Route>
