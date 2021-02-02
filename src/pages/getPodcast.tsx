@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link, useParams } from 'react-router-dom';
-import { AccountFiller } from '../components/account-filler';
+import { SidePage } from '../components/side-page';
 import { Player } from '../components/player';
 import { PODCAST_FRAGMENT } from '../fragment';
 import {
@@ -69,10 +69,10 @@ export const GetPodcast = () => {
         <title>Podcast | Nuber Eats</title>
       </Helmet>
       <div className="grid sm:grid-cols-2 sm:justify-items-center">
-        <AccountFiller />
-        <section className="w-full border-b-2 border-gray-400 max-w-screen-sm sm:border-l-2">
+        <SidePage />
+        <section className="w-full border-b-2 border-gray-400 max-w-screen-sm sm:border-none">
           {/* {`podcast ${data?.getPodcast.podcast?.title}`} */}
-          <main className="py-4 px-5 border-t border-gray-400">
+          <main className="py-4 px-5 border-t border-gray-400 sm:border-none">
             <header className="flex justify-between">
               <div>
                 <h1 className="text-3xl pr-2">
@@ -108,7 +108,10 @@ export const GetPodcast = () => {
             </p>
           </main>
           {data?.getPodcast.podcast?.episodes?.map(episode => (
-            <div className="py-4 px-5 border-t border-gray-400">
+            <div
+              key={episode.id}
+              className="py-4 px-5 border-t border-gray-400 sm:border-none hover:bg-gray-900"
+            >
               <span className="text-gray-400 text-sm">
                 {new Date(Date.parse(episode.createdAt)).toLocaleString()}
               </span>

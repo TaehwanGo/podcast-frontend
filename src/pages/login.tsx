@@ -11,7 +11,7 @@ import { AccountButton } from '../components/button';
 import { EMAIL_REGEX, LOCALSTORAGE_TOKEN } from '../constants';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
-import { AccountFiller } from '../components/account-filler';
+import { SidePage } from '../components/side-page';
 
 interface ILoginForm {
   email: string;
@@ -75,7 +75,7 @@ export const Login = () => {
         <title>Login | Podcast</title>
       </Helmet>
       <div className="login-screen-grid">
-        <AccountFiller />
+        <SidePage />
         <section className="login-mobile-screen">
           <h3 className="font-bold text-left text-3xl text-yellow-200 mt">
             Log in

@@ -11,7 +11,7 @@ import {
   createAccountMutationVariables,
 } from '../__generated__/createAccountMutation';
 import { EMAIL_REGEX } from '../constants';
-import { AccountFiller } from '../components/account-filler';
+import { SidePage } from '../components/side-page';
 
 // 아래 mutation이름 (PotatoMutation)은 백엔드로 가는게 아니라 프론트에서 쓰여질 것임(Apollo)
 // Apollo는 이 변수들을 살펴보고 내가 작성한 변수들을 가지고 mutation을 만들음
@@ -85,7 +85,7 @@ export const CreateAccount = () => {
         <title>CreateAccount | Podcast</title>
       </Helmet>
       <div className="login-screen-grid">
-        <AccountFiller />
+        <SidePage />
 
         <section className="login-mobile-screen">
           <h4 className="w-full font-semibold text-left text-3xl mb-5 text-yellow-200">
