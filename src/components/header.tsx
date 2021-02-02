@@ -22,7 +22,7 @@ export const Header: React.FC = () => {
         </Link>
         {data?.me.email && <button onClick={onClick}>Log out</button>}
         {data?.me.email && (
-          <Link to="/my-profile/">
+          <Link to="/edit-profile/">
             <FontAwesomeIcon icon={faUser} />
           </Link>
         )}

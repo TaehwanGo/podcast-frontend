@@ -3,8 +3,9 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Header } from '../components/header';
 import { NotFound } from '../pages/404';
 import { useMe } from '../hooks/useMe';
-import { GetAllPodcsts } from '../pages/getAllPodcasts';
+import { GetAllPodcasts } from '../pages/getAllPodcasts';
 import { EditProfile } from '../pages/user/edit-profile';
+import { GetPodcast } from '../pages/getPodcast';
 
 export const LoggedInRouter = () => {
   const { data, loading, error } = useMe();
@@ -21,11 +22,14 @@ export const LoggedInRouter = () => {
     <Router>
       <Header />
       <Switch>
+        <Route path="/podcast/:id">
+          <GetPodcast />
+        </Route>
         <Route path="/edit-profile">
           <EditProfile />
         </Route>
         <Route path="/" exact>
-          <GetAllPodcsts />
+          <GetAllPodcasts />
         </Route>
         <Route>
           <NotFound />

@@ -5,7 +5,8 @@ module.exports = {
     tagName: 'gql',
     service: {
       name: 'podcast-backend',
-      url: 'https://podcast-backend-tony.herokuapp.com/graphql',
+      url: 'http://localhost:4000/graphql',
     },
   },
 };
+// https://podcast-backend-tony.herokuapp.com/graphql
