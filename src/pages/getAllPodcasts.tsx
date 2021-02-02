@@ -8,6 +8,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { AccountFiller } from '../components/account-filler';
+import { Player } from '../components/player';
 import { PODCAST_FRAGMENT } from '../fragment';
 import { getAllPodcastsQuery } from '../__generated__/getAllPodcastsQuery';
 
@@ -49,7 +50,7 @@ export const GetAllPodcasts = () => {
           {data?.getAllPodcasts.podcasts?.map(podcast => (
             <div
               key={podcast.id}
-              className="py-4 px-8 border-t border-gray-400"
+              className="py-4 px-5 border-t border-gray-400"
             >
               <Link to={`/podcast/${podcast.id}`}>
                 <div className="flex items-center">
@@ -83,18 +84,8 @@ export const GetAllPodcasts = () => {
                     : 'No Episode'}
                 </h4>
               </div>
-              <div className="pt-2 mt-2 text-green-600">
-                <span className=" pb-1 px-2 rounded-r-full rounded-l-full border border-gray-400 cursor-pointer hover:opacity-80">
-                  <i className="far fa-play-circle text-green-600"></i>
-                  <span className="ml-2 text-white">3 min</span>
-                </span>
-                <span className="ml-4 cursor-pointer hover:opacity-80">
-                  <FontAwesomeIcon icon={faPlusSquare} />
-                </span>
-                <span className="ml-4 cursor-pointer hover:opacity-80">
-                  <FontAwesomeIcon icon={faArrowCircleDown} />
-                </span>
-              </div>
+
+              <Player />
             </div>
           ))}
         </section>
