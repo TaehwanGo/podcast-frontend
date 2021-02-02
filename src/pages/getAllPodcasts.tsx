@@ -55,7 +55,7 @@ export const GetAllPodcasts = () => {
       <Helmet>
         <title>Home | Nuber Eats</title>
       </Helmet>
-      <div className="grid sm:grid-cols-2 sm:justify-items-center">
+      <div className="grid sm:grid-cols-2 sm:justify-items-center max-w-screen-xl m-auto">
         <SidePage />
         <section className="w-full border-b-2 border-gray-400 max-w-screen-sm sm:border-none">
           {podcastsArray &&
