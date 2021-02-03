@@ -18,7 +18,7 @@ interface ILoginForm {
   password: string;
 }
 
-const LOGIN_MUTATION = gql`
+export const LOGIN_MUTATION = gql`
   mutation loginMutation($loginInput: LoginInput!) {
     login(input: $loginInput) {
       ok
@@ -44,9 +44,10 @@ export const Login = () => {
       localStorage.setItem(LOCALSTORAGE_TOKEN, token);
       authToken(token);
       isLoggedInVar(true);
-    } else {
-      console.log(error);
     }
+    // else {
+    //   console.log(error);
+    // }
   };
 
   const [loginMutation, { data: loginMutationResult, loading }] = useMutation<

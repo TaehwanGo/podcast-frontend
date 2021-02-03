@@ -12,7 +12,7 @@ import { Player } from '../components/player';
 import { PODCAST_FRAGMENT } from '../fragment';
 import { getAllPodcastsQuery } from '../__generated__/getAllPodcastsQuery';
 
-const PODCASTS_QUERY = gql`
+export const PODCASTS_QUERY = gql`
   query getAllPodcastsQuery {
     getAllPodcasts {
       ok
@@ -53,7 +53,7 @@ export const GetAllPodcasts = () => {
   return (
     <div>
       <Helmet>
-        <title>Home | Nuber Eats</title>
+        <title>Home | Podcast</title>
       </Helmet>
       <div className="page-container">
         <SidePage />
@@ -64,7 +64,7 @@ export const GetAllPodcasts = () => {
                 key={podcast.id}
                 className="py-4 px-5 border-t border-gray-400 sm:border-none hover:bg-gray-900"
               >
-                <Link to={`/podcast/${podcast.id}`}>
+                <Link role="link" to={`/podcast/${podcast.id}`}>
                   <div className="flex items-center">
                     <div
                       style={{

@@ -16,7 +16,7 @@ import {
   getPodcastQueryVariables,
 } from '../__generated__/getPodcastQuery';
 
-const PODCAST_QUERY = gql`
+export const PODCAST_QUERY = gql`
   query getPodcastQuery($input: PodcastSearchInput!) {
     getPodcast(input: $input) {
       ok
@@ -66,7 +66,7 @@ export const GetPodcast = () => {
   return (
     <div>
       <Helmet>
-        <title>Podcast | Nuber Eats</title>
+        <title>Podcast | Podcast</title>
       </Helmet>
       <div className="page-container">
         <SidePage />

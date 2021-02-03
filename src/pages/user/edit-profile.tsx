@@ -9,13 +9,14 @@ import {
 } from '../../__generated__/editProfile';
 import { EMAIL_REGEX } from '../../constants';
 import { SidePage } from '../../components/side-page';
+import { FormError } from '../../components/form-error';
 
 interface IFormProps {
   email?: string;
   password?: string;
 }
 
-const EDIT_PROFILE_MUTATION = gql`
+export const EDIT_PROFILE_MUTATION = gql`
   mutation editProfile($input: EditProfileInput!) {
     editProfile(input: $input) {
       ok
@@ -26,7 +27,13 @@ const EDIT_PROFILE_MUTATION = gql`
 
 export const EditProfile = () => {
   const { data: userData, refetch } = useMe();
-  const { register, handleSubmit, getValues, formState } = useForm<IFormProps>({
+  const {
+    register,
+    handleSubmit,
+    getValues,
+    formState,
+    errors,
+  } = useForm<IFormProps>({
     defaultValues: {
       email: userData?.me.email,
     },
@@ -90,13 +97,19 @@ export const EditProfile = () => {
             <div className="login-input-label">Email</div>
             <input
               ref={register({
-                pattern: EMAIL_REGEX,
+                pattern: {
+                  value: EMAIL_REGEX,
+                  message: 'Please enter a valid email',
+                },
               })}
               name="email"
               className="input"
               type="email"
               placeholder="Email"
             />
+            {errors.email?.message && (
+              <FormError errorMessage={errors.email?.message} />
+            )}
             <div className="login-input-label">Password</div>
             <input
               ref={register}
