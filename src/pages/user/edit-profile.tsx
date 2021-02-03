@@ -8,6 +8,7 @@ import {
   editProfileVariables,
 } from '../../__generated__/editProfile';
 import { EMAIL_REGEX } from '../../constants';
+import { SidePage } from '../../components/side-page';
 
 interface IFormProps {
   email?: string;
@@ -77,41 +78,40 @@ export const EditProfile = () => {
     });
   };
   return (
-    <div className="w-full flex flex-col px-5 items-center">
+    <div>
       <Helmet>
         <title>Edit Profile | Podcast</title>
       </Helmet>
-
-      <div className="w-full max-w-screen-sm ">
-        <h4 className="w-full font-medium text-left text-3xl mb-5">
-          Edit Profile
-        </h4>
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="grid gap-3 mt-5 w-full mb-5"
-        >
-          <input
-            ref={register({
-              pattern: EMAIL_REGEX,
-            })}
-            name="email"
-            className="input"
-            type="email"
-            placeholder="Email"
-          />
-          <input
-            ref={register}
-            name="password"
-            className="input"
-            type="password"
-            placeholder="Password"
-          />
-          <AccountButton
-            loading={loading}
-            canClick={formState.isValid}
-            actionText="Save Profile"
-          />
-        </form>
+      <div className="page-container">
+        <SidePage />
+        <section className="login-mobile-screen">
+          <h1 className="login-h1">Edit Profile</h1>
+          <form onSubmit={handleSubmit(onSubmit)} className="login-form">
+            <div className="login-input-label">Email</div>
+            <input
+              ref={register({
+                pattern: EMAIL_REGEX,
+              })}
+              name="email"
+              className="input"
+              type="email"
+              placeholder="Email"
+            />
+            <div className="login-input-label">Password</div>
+            <input
+              ref={register}
+              name="password"
+              className="input"
+              type="password"
+              placeholder="Password"
+            />
+            <AccountButton
+              loading={loading}
+              canClick={formState.isValid}
+              actionText="Save Profile"
+            />
+          </form>
+        </section>
       </div>
     </div>
   );

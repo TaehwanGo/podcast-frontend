@@ -13,7 +13,7 @@ export const isLoggedInVar = makeVar(Boolean(token)); // localStorage에 저장�
 export const authToken = makeVar(token);
 
 const httpLink = createHttpLink({
-  uri: 'https://podcast-backend-tony.herokuapp.com/graphql', // https://podcast-backend-tony.herokuapp.com/graphql
+  uri: 'http://localhost:4000/graphql', // https://podcast-backend-tony.herokuapp.com/graphql
 });
 
 const authLink = setContext((_, { headers }) => {

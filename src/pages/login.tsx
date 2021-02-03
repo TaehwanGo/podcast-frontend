@@ -70,21 +70,16 @@ export const Login = () => {
   };
 
   return (
-    <div style={{ height: '70vh' }} className="flex max-w-screen-xl m-auto">
+    <div>
       <Helmet>
         <title>Login | Podcast</title>
       </Helmet>
-      <div className="login-screen-grid">
+      <div className="page-container">
         <SidePage />
         <section className="login-mobile-screen">
-          <h3 className="font-bold text-left text-3xl text-yellow-200 mt">
-            Log in
-          </h3>
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="grid gap-3 mt-10 text-white"
-          >
-            <div className="text-left font-semibold">Email</div>
+          <h1 className="login-h1">Log in</h1>
+          <form onSubmit={handleSubmit(onSubmit)} className="login-form">
+            <div className="login-input-label">Email</div>
             <input
               ref={register({
                 required: 'Email is required',
@@ -101,7 +96,7 @@ export const Login = () => {
             {errors.email?.message && (
               <FormError errorMessage={errors.email.message} />
             )}
-            <div className="text-left font-semibold">Password</div>
+            <div className="login-input-label">Password</div>
             <input
               ref={register({ required: 'Password is required' })}
               className="input"

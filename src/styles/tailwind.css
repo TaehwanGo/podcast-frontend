@@ -16,4 +16,16 @@
 .login-mobile-screen {
   @apply w-full text-center px-5 max-w-screen-sm;
 }
+.page-container {
+  @apply grid sm:grid-cols-2 justify-items-center max-w-screen-xl m-auto;
+}
+.login-form {
+  @apply grid gap-3 mt-5 w-full mb-5 text-white;
+}
+.login-h1 {
+  @apply font-semibold text-left text-3xl text-yellow-200;
+}
+.login-input-label {
+  @apply text-left font-semibold;
+}
 @tailwind utilities;

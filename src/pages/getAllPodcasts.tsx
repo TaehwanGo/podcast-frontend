@@ -39,10 +39,10 @@ export const GetAllPodcasts = () => {
   const { data, loading } = useQuery<getAllPodcastsQuery>(PODCASTS_QUERY);
   console.log(data);
   let podcastsArray = data?.getAllPodcasts.podcasts;
-  let haveEpisodePodcasts = podcastsArray?.filter(
+  const haveEpisodePodcasts = podcastsArray?.filter(
     podcast => podcast.episodes && podcast.episodes.length > 0,
   );
-  let noEpisodePodcasts = podcastsArray?.filter(
+  const noEpisodePodcasts = podcastsArray?.filter(
     podcast => podcast.episodes && podcast.episodes.length === 0,
   );
 
@@ -55,7 +55,7 @@ export const GetAllPodcasts = () => {
       <Helmet>
         <title>Home | Nuber Eats</title>
       </Helmet>
-      <div className="grid sm:grid-cols-2 sm:justify-items-center max-w-screen-xl m-auto">
+      <div className="page-container">
         <SidePage />
         <section className="w-full border-b-2 border-gray-400 max-w-screen-sm sm:border-none">
           {podcastsArray &&
