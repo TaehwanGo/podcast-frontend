@@ -50,18 +50,6 @@ const mockedPodcastQueryResponse = Promise.resolve({
   },
 });
 
-const mockPush = jest.fn();
-jest.mock('react-router-dom', () => {
-  // jest가 module을 전부 cover하면서 beforeEach에서 쓰고 있는 Router까지 고장남
-  const realModule = jest.requireActual('react-router-dom'); // 실제 모듈을 필요로 함
-  return {
-    ...realModule, // 실제 모듈 기능 + mock이 필요한 부분만 mock
-    useHistory: () => {
-      return { push: mockPush };
-    },
-  };
-});
-
 describe('<GetPodcast />', () => {
   // get the podcasts(mocking) and render
   let mockedClient: MockApolloClient;

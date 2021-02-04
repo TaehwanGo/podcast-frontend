@@ -110,4 +110,8 @@ describe('<GetAllPodcasts />', () => {
     // userEvent.click(aPodcast);
     // expect(mockPush).toHaveBeenCalledWith('/podcast/5');
   });
+
+  afterAll(() => {
+    jest.clearAllMocks(); // test 후 모든 것을 제자리로 돌려 놓음(hooks mock 이후)
+  });
 });
