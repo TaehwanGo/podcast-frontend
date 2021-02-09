@@ -17,6 +17,11 @@ export interface getPodcastQuery_getPodcast_podcast_creator {
   role: UserRole;
 }
 
+export interface getPodcastQuery_getPodcast_podcast_category {
+  __typename: "Category";
+  name: string;
+}
+
 export interface getPodcastQuery_getPodcast_podcast_episodes {
   __typename: "Episode";
   id: number;
@@ -33,7 +38,7 @@ export interface getPodcastQuery_getPodcast_podcast {
   thumbnailImg: string;
   creator: getPodcastQuery_getPodcast_podcast_creator;
   description: string;
-  category: string;
+  category: getPodcastQuery_getPodcast_podcast_category | null;
   episodes: getPodcastQuery_getPodcast_podcast_episodes[] | null;
 }
 

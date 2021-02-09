@@ -22,7 +22,9 @@ export const PODCASTS_QUERY = gql`
         title
         thumbnailImg
         description
-        category
+        category {
+          name
+        }
         episodes {
           id
           createdAt

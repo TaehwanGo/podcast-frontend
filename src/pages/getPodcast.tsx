@@ -32,7 +32,9 @@ export const PODCAST_QUERY = gql`
           role
         }
         description
-        category
+        category {
+          name
+        }
         episodes {
           id
           createdAt
