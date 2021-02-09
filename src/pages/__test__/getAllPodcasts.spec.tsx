@@ -54,6 +54,7 @@ const mockedPodcastsQueryResponse = Promise.resolve({
       __typename: 'GetAllPodcastsOutput',
     },
   },
+  // loading: true,
 });
 
 const mockPush = jest.fn();

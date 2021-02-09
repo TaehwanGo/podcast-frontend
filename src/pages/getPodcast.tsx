@@ -70,7 +70,7 @@ export const GetPodcast = () => {
       </Helmet>
       <div className="page-container">
         <SidePage />
-        <section className="w-full border-b-2 border-gray-400 max-w-screen-sm sm:border-none">
+        <section className="border-b-2 border-gray-400 sm:border-none app-page">
           {/* {`podcast ${data?.getPodcast.podcast?.title}`} */}
           <main className="py-4 px-5 border-t border-gray-400 sm:border-none">
             <header className="flex justify-between">

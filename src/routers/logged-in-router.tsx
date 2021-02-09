@@ -6,6 +6,7 @@ import { useMe } from '../hooks/useMe';
 import { GetAllPodcasts } from '../pages/getAllPodcasts';
 import { EditProfile } from '../pages/user/edit-profile';
 import { GetPodcast } from '../pages/getPodcast';
+import { BottomNavigation } from '../components/bottom-nav';
 
 export const LoggedInRouter = () => {
   const { data, loading, error } = useMe();
@@ -35,6 +36,7 @@ export const LoggedInRouter = () => {
           <NotFound />
         </Route>
       </Switch>
+      <BottomNavigation />
     </Router>
   );
 };

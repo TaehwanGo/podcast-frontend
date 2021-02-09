@@ -57,58 +57,62 @@ export const GetAllPodcasts = () => {
       </Helmet>
       <div className="page-container">
         <SidePage />
-        <section className="w-full border-b-2 border-gray-400 max-w-screen-sm sm:border-none">
-          {podcastsArray &&
-            podcastsArray.map(podcast => (
-              <div
-                key={podcast.id}
-                className="py-4 px-5 border-t border-gray-400 sm:border-none hover:bg-gray-900"
-              >
-                <Link role="link" to={`/podcast/${podcast.id}`}>
-                  <div className="flex items-center">
-                    <div
-                      style={{
-                        backgroundImage: `url(${podcast.thumbnailImg})`,
-                      }}
-                      className="w-14 h-14 bg-cover bg-center rounded-lg"
-                    ></div>
-                    <div className="ml-2">
-                      <h3 className="text-lg">{podcast.title}</h3>
-                      <h4 className="text-gray-400 text-sm">
-                        {podcast.episodes &&
-                        podcast.episodes[0] &&
-                        podcast.episodes[0].createdAt
-                          ? new Date(
-                              Date.parse(podcast.episodes[0].createdAt),
-                            ).toLocaleDateString()
-                          : 'new'}
-                      </h4>
+        {!loading && (
+          <section className="border-b-2 border-gray-400 sm:border-none app-page">
+            {/* Search bar */}
+            {/* Category list */}
+            {podcastsArray &&
+              podcastsArray.map(podcast => (
+                <div
+                  key={podcast.id}
+                  className="py-4 px-5 border-t border-gray-400 sm:border-none hover:bg-gray-900"
+                >
+                  <Link role="link" to={`/podcast/${podcast.id}`}>
+                    <div className="flex items-center">
+                      <div
+                        style={{
+                          backgroundImage: `url(${podcast.thumbnailImg})`,
+                        }}
+                        className="w-14 h-14 bg-cover bg-center rounded-lg"
+                      ></div>
+                      <div className="ml-2">
+                        <h3 className="text-lg">{podcast.title}</h3>
+                        <h4 className="text-gray-400 text-sm">
+                          {podcast.episodes &&
+                          podcast.episodes[0] &&
+                          podcast.episodes[0].createdAt
+                            ? new Date(
+                                Date.parse(podcast.episodes[0].createdAt),
+                              ).toLocaleDateString()
+                            : 'new'}
+                        </h4>
+                      </div>
                     </div>
+                  </Link>
+
+                  {/* latest episode will be here */}
+                  <div className="mt-2">
+                    <h3 className="font-semibold">
+                      {podcast.episodes &&
+                      podcast.episodes[0] &&
+                      podcast.episodes[0].title
+                        ? podcast.episodes[0].title
+                        : 'No Episode'}
+                    </h3>
+                    <h4>
+                      {podcast.episodes &&
+                      podcast.episodes[0] &&
+                      podcast.episodes[0].description
+                        ? podcast.episodes[0].description
+                        : 'No Episode'}
+                    </h4>
                   </div>
-                </Link>
 
-                {/* latest episode will be here */}
-                <div className="mt-2">
-                  <h3 className="font-semibold">
-                    {podcast.episodes &&
-                    podcast.episodes[0] &&
-                    podcast.episodes[0].title
-                      ? podcast.episodes[0].title
-                      : 'No Episode'}
-                  </h3>
-                  <h4>
-                    {podcast.episodes &&
-                    podcast.episodes[0] &&
-                    podcast.episodes[0].description
-                      ? podcast.episodes[0].description
-                      : 'No Episode'}
-                  </h4>
+                  <Player />
                 </div>
-
-                <Player />
-              </div>
-            ))}
-        </section>
+              ))}
+          </section>
+        )}
       </div>
     </div>
   );
