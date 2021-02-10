@@ -1,16 +1,11 @@
 import { gql, useQuery } from '@apollo/client';
-import {
-  faArrowCircleDown,
-  faPlusSquare,
-} from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { SidePage } from '../components/side-page';
 import { Player } from '../components/player';
-import { PODCAST_FRAGMENT } from '../fragment';
 import { getAllPodcastsQuery } from '../__generated__/getAllPodcastsQuery';
+import { allCategories } from '../__generated__/allCategories';
 
 export const PODCASTS_QUERY = gql`
   query getAllPodcastsQuery {
@@ -37,9 +32,28 @@ export const PODCASTS_QUERY = gql`
   }
 `;
 
+export const CATEGORIES_QUERY = gql`
+  query allCategories {
+    allCategories {
+      ok
+      error
+      categories {
+        id
+        name
+        slug
+      }
+    }
+  }
+`;
+
 export const GetAllPodcasts = () => {
   const { data, loading } = useQuery<getAllPodcastsQuery>(PODCASTS_QUERY);
+  const {
+    data: categories,
+    loading: loadingCategories,
+  } = useQuery<allCategories>(CATEGORIES_QUERY);
   console.log(data);
+  console.log(categories);
   let podcastsArray = data?.getAllPodcasts.podcasts;
   const haveEpisodePodcasts = podcastsArray?.filter(
     podcast => podcast.episodes && podcast.episodes.length > 0,
@@ -63,6 +77,12 @@ export const GetAllPodcasts = () => {
           <section className="border-b-2 border-gray-400 sm:border-none app-page">
             {/* Search bar */}
             {/* Category list */}
+            <div className="px-5">
+              {categories?.allCategories.categories?.map(category => (
+                // Link로 감싸고 클릭하면 podcast detail로 이동(미구현)
+                <button className="mr-5 py-4">{category.name}</button>
+              ))}
+            </div>
             {podcastsArray &&
               podcastsArray.map(podcast => (
                 <div
